@@ -3,10 +3,12 @@ import React,{ChangeEvent, FC, useState} from 'react';
 import Navbar from './components/Navbar';
 import Task from './components/Task';
 import {ITask} from './Interfaces'
+import { stringify } from 'querystring';
 const App:FC = () => {
 
   const[task, setTask] = useState<string>("")
   const[deadline, setDeadline] = useState<number>(0)
+  const[completed, setCompleted] = useState<boolean>(false)
   const[todoList, setTodoList] = useState<ITask[]>([])
 
 
@@ -20,11 +22,26 @@ const App:FC = () => {
   }
 
   const addTask = (): void => {
-    const newTask = { name: task, deadline: deadline}
-    setTodoList([...todoList,newTask])
-    setTask("")
-    setDeadline(0)
-    
+    const newTask = { name: task, deadline: deadline, completed:completed}
+    if(task == ""){
+      alert('enter a task')
+    } else {
+      setTodoList([...todoList,newTask])
+      setTask("")
+      setDeadline(0)
+    }
+  }
+
+  const completeTask = (taskNameToDelete: string) : void => {
+    let newList:any
+    newList = todoList.map((task) => {
+      if( task.name == taskNameToDelete){
+       return { name: task.name, deadline: task.deadline, completed:!task.completed}
+      } else {
+        return task
+      }
+    })
+    setTodoList(newList)
   }
 
 
@@ -40,8 +57,8 @@ const App:FC = () => {
 
         <button onClick={addTask}>Add Task</button>
        <div className="todoList"></div>
-        {todoList.map((item,index) => {
-          return <Task key={index}/>
+        {todoList.map((task:ITask,index:number) => {
+          return <Task key={index} task={task} completeTask={completeTask}/>
         })}
       </div>
     </div>

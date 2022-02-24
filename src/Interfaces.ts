@@ -1,5 +1,6 @@
 export interface ITask {
     name : string,
-    deadline : number
+    deadline : number,
+    completed : boolean
 
 }
