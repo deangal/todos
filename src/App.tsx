@@ -1,8 +1,10 @@
 import './App.css';
-import React,{ChangeEvent, FC, useState} from 'react';
+import React,{ChangeEvent, FC, useEffect, useState} from 'react';
 import Navbar from './components/Navbar';
+import Count from './components/Count'
+import { Users } from './components/Users';
 import Task from './components/Task';
-import {ITask} from './Interfaces'
+import {ITask , IUser} from './Interfaces'
 import { stringify } from 'querystring';
 const App:FC = () => {
 
@@ -12,6 +14,7 @@ const App:FC = () => {
   const[todoList, setTodoList] = useState<ITask[]>([])
 
 
+  
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     if(event.target.name === "task"){
       setTask(event.target.value)
@@ -47,6 +50,7 @@ const App:FC = () => {
 
   return (
     <div className="App">
+      <Users/>
       <div className="header">
         <div className="inputContainer">
 
