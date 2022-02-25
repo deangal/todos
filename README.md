@@ -1,3 +1,12 @@
-change status on complete and archive it 
-import json placeholder and use it 
-use redux thunk ***
+redux:{
+task
+users (tasks,acrchive)
+
+}
+
+auto archive
+unarchive option
+pause auto archive
+
+change status on complete and archive it
+use redux thunk \*\*\*

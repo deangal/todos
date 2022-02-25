@@ -1,36 +1,49 @@
-import React,{ useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { IUser } from '../Interfaces'
 import axios from 'axios';
+import { useSelector, useDispatch } from "react-redux";
+import { fetch, currentUser } from "../redux/slices/user";
 
 export const Users = () => {
-    const[users,setUsers] = useState<IUser[]>([])
-    const[current,setCurrent] = useState<string>()
 
-    //fetch to redux so it wont rerender
+  // comp state
+  const [users, setUsers] = useState<IUser[]>([])
+
+  //redux
+  let userData = useSelector((state: any) => {
+    return state.users;
+  });
+  const dispatch = useDispatch();
+
+
   useEffect(() => {
     async function fetchUsers() {
-      const response = await axios.get("https://jsonplaceholder.typicode.com/users")
+      const response = await axios.get("http://localhost:3000/users")
+      switchCurrent(userData.current);
       setUsers(response.data)
-      switchCurrent(response.data[0].name);
+      dispatch(fetch(response.data))
 
     }
-
     fetchUsers();
   }, [])
 
-
-  const switchCurrent = (option: string ) : void => {
-      setCurrent(option)
+  // switch current user handler
+  const switchCurrent = (option: string): void => {
+    dispatch(currentUser(option))
   }
-  
-  console.log(current);
+
 
   return (
-      <select onChange={(e) => switchCurrent(e.target.value)} >
+    <select defaultValue={'DEFAULT'} onChange={(e) => switchCurrent(e.target.value)} >
 
-        {users.map( (user,index) => (
-            <option key={index}>{user.name}</option>
-        ))}
-      </select>
+      {users.map((user: IUser, index: number) => {
+        // map users to options and load selected user
+        if (userData.current == user.name) {
+
+          return <option selected key={index}>{user.name}</option>
+        }
+        return <option value={user.name} key={index}>{user.name}</option>
+      })}
+    </select>
   )
 }

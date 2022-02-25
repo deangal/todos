@@ -1,0 +1,72 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Leanne Graham",
+      "username": "Bret",
+      "email": "Sincere@april.biz",
+      "city": "Gwenborough",
+      "phone": "1-770-736-8031 x56442",
+      "tasks": [
+        {
+          "name": "ds",
+          "deadline": 0,
+          "completed": false
+        }
+      ],
+      "archive": []
+    },
+    {
+      "id": 2,
+      "name": "Dean Gal",
+      "username": "Bret",
+      "email": "Sincere@april.biz",
+      "city": "Gwenborough",
+      "phone": "1-770-736-8031 x56442",
+      "tasks": [
+        {
+          "name": "dsadada",
+          "deadline": 1,
+          "completed": true
+        },
+        {
+          "name": "123",
+          "deadline": 0,
+          "completed": true
+        },
+        {
+          "name": "a",
+          "deadline": 0,
+          "completed": false
+        }
+      ],
+      "archive": []
+    },
+    {
+      "id": 3,
+      "name": "Gal Aviv",
+      "username": "Bret",
+      "email": "Sincere@april.biz",
+      "city": "Gwenborough",
+      "phone": "1-770-736-8031 x56442",
+      "tasks": [
+        {
+          "name": "a",
+          "deadline": 0,
+          "completed": false
+        },
+        {
+          "name": "dasdas",
+          "deadline": 0,
+          "completed": true
+        },
+        {
+          "name": "dsa",
+          "deadline": 1,
+          "completed": false
+        }
+      ],
+      "archive": []
+    }
+  ]
+}
